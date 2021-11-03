@@ -49,10 +49,14 @@ const userInfo = [
   }
 ];
 
-let cities = [];
-userInfo.filter((ele) => {
-  if (ele.state === "Karnataka") {
-    cities.push(ele.city);
+const states = userInfo.reduce((acc, curr) => {
+  const key = curr["state"];
+  if (!acc[key]) {
+    acc[key] = [];
   }
-});
-console.log(cities);
+
+  acc[key].push(curr);
+  return acc;
+}, {});
+
+console.log(states);
